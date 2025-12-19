@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./assets/logo.png" alt="PDF OCR Reader Logo" width="120">
+</p>
+
 # 📄 PDF OCR Reader (Offline-First, Android-Friendly)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
