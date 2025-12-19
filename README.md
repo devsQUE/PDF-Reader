@@ -4,153 +4,174 @@
 ![Platform: Browser](https://img.shields.io/badge/Platform-Browser%20%7C%20Android-brightgreen)
 ![Privacy: Offline](https://img.shields.io/badge/Privacy-100%25%20Offline-blue)
 
-A lightweight, modular PDF reader that extracts text using OCR, displays structured content, and supports text-to-speech. Designed for high reliability on **Android** and **Desktop browsers**, even when handling large documents.
+An **offline-first PDF reader** that extracts text using OCR, displays structured content, and supports text-to-speech.
 
-This project focuses on **stability, performance, and zero-cost operation** (no paid APIs required).
+The project is designed for **Android and desktop browsers**, with a strong focus on **stability, memory safety, and deterministic behavior**, even when working with large PDF files on low-end devices.
+
+No backend. No paid APIs. No data leaves the device.
 
 ---
 
 ## ✨ Features
 
 ### 📂 PDF Upload & Rendering
-* **Large PDF Support:** Optimized for stability using device-aware performance limits.
-* **Page Range Loading:** Load specific page ranges (e.g., pages 101–160) to reduce memory usage.
-* **Mobile-Safe Rendering:** Prevents crashes and page reordering issues on Android browsers.
-* **Single Load Protection:** Prevents multiple PDFs from loading simultaneously.
+- Large PDF support using device-aware performance limits  
+- Page range loading (e.g. pages 101–160) to reduce memory usage  
+- Mobile-safe rendering to prevent crashes and page reordering issues  
+- Single-PDF load protection to avoid race conditions  
 
 ---
 
 ### 🧠 OCR (Optical Character Recognition)
-* **Engine:** Powered by `Tesseract.js`.
-* **Multilingual:** Supports Hindi and English OCR with runtime language switching.
-* **Per-Page OCR:** Text extraction happens page-by-page for better responsiveness.
-* **Offline First:** All OCR processing runs locally in the browser.
+- Powered by **Tesseract.js**  
+- Hindi and English OCR support  
+- Runtime language switching  
+- Page-by-page OCR for responsive UI  
+- Fully offline processing  
 
 ---
 
 ### 🗣️ Text-to-Speech
-* **Native Browser TTS:** Uses the browser’s built-in Speech Synthesis API.
-* **Playback Controls:** Play, Pause, Resume, Stop.
-* **Customization:** Adjustable speech rate and voice selection.
-* **Page-Synced Reading:** Speech is synchronized with selected pages.
+- Uses the browser’s native Speech Synthesis API  
+- Play, Pause, Resume, and Stop controls  
+- Adjustable speech rate and voice selection  
+- Page-synchronized reading  
 
 ---
 
 ### 🖼️ Preview & User Experience
-* **Thumbnail Previews:** Fast and correctly ordered thumbnails (Android-safe).
-* **Preview Overlay:** Full-page preview without disrupting OCR or TTS flow.
-* **Info Panel:** Displays PDF name, total page count, and file size.
-* **No Browser Menus:** Long-press image context menus are disabled for a native-app feel.
+- Correctly ordered thumbnail previews (Android-safe)  
+- Full-page preview overlay without interrupting OCR or TTS  
+- PDF information panel (file name, page count, file size)  
+- Long-press image context menus disabled for a native-app feel  
 
 ---
 
 ### ⚡ Performance & Stability
-* **Device-Aware Limits:** Page rendering limits based on available device memory.
-* **Async-Safe Rendering:** Eliminates race conditions and ordering bugs.
-* **Low-End Friendly:** Designed to work reliably on budget Android devices.
+- Device-aware rendering limits based on available memory  
+- Async-safe rendering to eliminate race conditions  
+- Designed to run reliably on budget Android devices  
 
 ---
 
 ## 🧱 Architecture Overview
 
-The application follows a **fully event-driven, modular architecture**, keeping UI, logic, and state cleanly separated.
+The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
 
-```text
-src/
-├── app.js                   # App entry & wiring
-├── core/
-│   ├── events.js            # Global event bus
-│   └── state.js             # Central state management
-├── pdf/
-│   ├── pdfLoader.js         # PDF.js loading & rendering logic
-│   └── pageStore.js         # Page data storage
-├── ocr/
-│   └── ocrService.js        # Tesseract.js OCR pipeline
-├── tts/
-│   └── ttsService.js        # Browser Text-to-Speech logic
-├── ui/
-│   ├── pageList.js          # Thumbnail list (Android-safe ordering)
-│   ├── pageIndicator.js     # Page indicator synchronization
-│   ├── pageRange.js         # Page range loader
-│   ├── pdfInfo.js           # PDF info panel
-│   ├── preview.js           # Preview overlay
-│   ├── controls.js          # OCR & TTS controls
-│   └── loader.js            # Loading indicators
-├── utils/
-│   └── performanceLimits.js # Device-specific safety limits
-└── ocr-worker.js            # Tesseract worker thread ```
+---
 
+## 🖼️ Screenshots
+
+### Main Interface
+![Main Interface](./screenshots/main-ui.png)
+
+### OCR & Text-to-Speech
+![OCR and Text-to-Speech](./screenshots/ocr-tts.png)
+
+---
+
+```
+root/
+├── index.html
+├── style.css
+├── app.js                     # Application entry point
+├── src/
+│   ├── core/
+│   │   ├── events.js          # Global event bus
+│   │   └── state.js           # Central state management
+│   ├── ocr/
+│   │   ├── ocrService.js      # OCR pipeline (Tesseract.js)
+│   │   └── ocrWorker.js       # Worker thread
+│   ├── pdf/
+│   │   ├── pageStore.js       # Page data storage
+│   │   └── pdfLoader.js       # PDF.js rendering logic
+│   ├── tts/
+│   │   ├── textChunker.js     # Text chunking logic
+│   │   └── ttsService.js      # Browser TTS service
+│   ├── ui/
+│   │   ├── controls.js
+│   │   ├── copyText.js
+│   │   ├── languageSwitch.js
+│   │   ├── loader.js
+│   │   ├── pageIndicator.js
+│   │   ├── pageList.js
+│   │   ├── pageRange.js
+│   │   ├── pdfInfo.js
+│   │   ├── preview.js
+│   │   ├── textPanel.js
+│   │   └── voiceControls.js
+│   └── utils/
+│       └── performanceLimits.js
+├── screenshots/
+│   ├── main-ui.png
+│   └── ocr-tts.png
+├── favicon.ico
+├── LICENSE
+└── README.md
+```
+
+---
 
 ## 🚀 Getting Started
-1️⃣ Clone or Download
-git clone <repository-url>
-cd pdf-ocr-reader
 
-2️⃣ Open in Browser
+### 1️⃣ Clone the repository
+```bash
+git clone https://github.com/devsQUE/PDF-Reader.git
+cd PDF-Reader
+```
 
-No build step required.
+### 2️⃣ Open in a browser
+No build step is required.
 
-Simply open:
-
+Open:
+```
 index.html
+```
 
+### Recommended Browsers
+- Chrome  
+- Edge  
+- Android Chrome / WebView  
 
-Recommended browsers:
+---
 
-Chrome
+## 📱 Android Compatibility Notes
+- Prevents async rendering and page reordering bugs  
+- Disables long-press image context menus  
+- Memory-safe rendering for large PDFs  
 
-Edge
+---
 
-Android Chrome / WebView
+## 🔐 Privacy & Cost
+- ❌ No backend server  
+- ❌ No API keys  
+- ❌ No paid services  
 
-📱 Android Compatibility Notes
+- ✅ Fully offline  
+- ✅ User data never leaves the device  
 
-Designed to avoid async rendering issues on Android
+---
 
-Prevents page reordering bugs
+## ⚠️ Known Limitations
+- OCR accuracy depends on scan quality  
+- Browser TTS voice quality varies by device  
+- No semantic correction or grammar rewriting  
+- Cloud-based AI voices are intentionally excluded  
 
-Disables long-press image context menus
+These are deliberate trade-offs to keep the project **free, private, and offline-first**.
 
-Memory-safe rendering for large PDFs
+---
 
-🔐 Privacy & Cost
+## 🧠 Design Philosophy
+- Reliability over flashiness  
+- Offline-first by default  
+- Deterministic behavior on mobile  
+- Modular code over monolithic scripts  
 
-❌ No backend server
+The goal is a tool that works **consistently**, even on constrained devices.
 
-❌ No API keys
+---
 
-❌ No paid services
-
-✅ Fully offline
-
-✅ User data never leaves the device
-
-⚠️ Known Limitations
-
-OCR accuracy depends on scan quality
-
-Browser TTS voice quality varies by device
-
-No semantic correction or grammar rewriting
-
-Cloud-based AI voices are intentionally excluded
-
-These are deliberate trade-offs to keep the project free, private, and offline-first.
-
-🧠 Design Philosophy
-
-Reliability over flashiness
-
-Offline-first by default
-
-Deterministic behavior on mobile
-
-Modular code over monolithic scripts
-
-The goal is a tool that works consistently, even on constrained devices.
-
-📜 License
-
-This project is licensed under the MIT License.
+## 📜 License
+This project is licensed under the **MIT License**.  
 You are free to use, modify, and distribute it.
-# PDF-Reader
