@@ -153,3 +153,4 @@ The goal is a tool that works consistently, even on constrained devices.
 
 This project is licensed under the MIT License.
 You are free to use, modify, and distribute it.
+# PDF-Reader
