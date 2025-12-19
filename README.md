@@ -54,12 +54,6 @@ No backend. No paid APIs. No data leaves the device.
 
 ---
 
-## 🧱 Architecture Overview
-
-The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
-
----
-
 ## 🖼️ Screenshots
 
 ### Main Interface
@@ -69,6 +63,11 @@ The application follows a **fully modular, event-driven architecture**, with a c
 ![OCR and Text-to-Speech](./screenshots/ocr-tts.png)
 
 ---
+
+## 🧱 Architecture Overview
+
+The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
+
 
 ```
 root/
