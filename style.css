@@ -1,0 +1,446 @@
+/* ---------- RESET ---------- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: #f3f4f6;
+    color: #111827;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ---------- TOP BAR ---------- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding: 12px 20px;
+    background: #1f2937;
+    color: #ffffff;
+}
+
+.topbar h1 {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.topbar input[type="file"] {
+    font-size: 13px;
+    color: #e5e7eb;
+}
+
+.topbar input[type="file"]::file-selector-button {
+    padding: 6px 12px;
+    margin-right: 10px;
+    border-radius: 6px;
+    border: none;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.topbar input[type="file"]::file-selector-button:hover {
+    background: #1e40af;
+}
+
+
+/* ---------- LAYOUT ---------- */
+.app {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+}
+
+/* ---------- PAGE LIST ---------- */
+.page-list {
+    width: 260px;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.page-list canvas {
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: border 0.2s, transform 0.1s;
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    user-select: none;
+}
+
+.page-list canvas:hover {
+    transform: scale(1.02);
+}
+
+.page-list canvas.active {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.35);
+}
+
+
+/* ---------- READER ---------- */
+.reader {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    overflow: hidden;
+}
+
+/* ---------- CONTROLS ---------- */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+}
+
+.controls button {
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    background: linear-gradient(180deg, #3b82f6, #2563eb);
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        box-shadow 0.2s ease,
+        transform 0.05s ease;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}
+
+.controls button:hover {
+    background: linear-gradient(180deg, #2563eb, #1e40af);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18);
+}
+
+.controls button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2) inset;
+}
+
+.controls button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+
+.divider {
+    width: 1px;
+    height: 28px;
+    background: #d1d5db;
+    margin: 0 6px;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    margin: 0 5px;
+    gap: 6px;
+    font-size: 14px;
+}
+
+.control-group span {
+    font-weight: 500;
+}
+
+.control-group input[type="range"] {
+    width: 110px;
+    height: 4px;
+    appearance: none;
+    background: #e5e7eb;
+    border-radius: 999px;
+    outline: none;
+    cursor: pointer;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.1s ease;
+}
+
+.control-group input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.1);
+}
+
+/* Firefox */
+.control-group input[type="range"]::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+}
+
+
+.control-group select {
+    padding: 6px 28px 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #d1d5db;
+    background-color: #ffffff;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    appearance: none;
+    background-image:
+        linear-gradient(45deg, transparent 50%, #6b7280 50%),
+        linear-gradient(135deg, #6b7280 50%, transparent 50%);
+    background-position:
+        calc(100% - 16px) 50%,
+        calc(100% - 11px) 50%;
+    background-size: 5px 5px, 5px 5px;
+    background-repeat: no-repeat;
+}
+
+.control-group select:hover {
+    border-color: #2563eb;
+}
+
+.control-group select:focus {
+    outline: none;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+}
+
+
+/* ---------- TEXT PANEL ---------- */
+.text-panel {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 16px;
+    overflow-y: auto;
+    line-height: 1.8;
+    font-size: 17px;
+}
+
+/* ---------- TTS HIGHLIGHT ---------- */
+.tts-chunk {
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.tts-active {
+    background: #fde047;
+}
+
+/* ---------- SCROLLBAR ---------- */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+
+/* ---------- LOADER ---------- */
+.loader {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.loader.hidden {
+    display: none;
+}
+
+.loader-box {
+    background: #ffffff;
+    padding: 24px 28px;
+    border-radius: 10px;
+    text-align: center;
+    min-width: 200px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 4px solid #e5e7eb;
+    border-top-color: #2563eb;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 12px;
+}
+
+#loaderText {
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.controls button i {
+    /* margin-right: 6px; */
+    font-size: 20px;
+}
+
+.control-group i {
+    color: #2563eb;
+    margin-right: 4px;
+    font-size: 18px;
+}
+
+.controls button span {
+    display: inline-block;
+}
+
+/* Better icon alignment */
+.controls button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+
+#copyBtn {
+    background: linear-gradient(180deg, #10b981, #059669);
+}
+
+#copyBtn:hover {
+    background: linear-gradient(180deg, #059669, #047857);
+}
+
+.page-list canvas {
+    touch-action: manipulation;
+}
+
+#uploadBtn {
+    display: none;
+}
+
+.page-indicator {
+    margin-left: auto;
+    font-size: 14px;
+    font-weight: 500;
+    color: #e5e7eb;
+}
+
+/* ---------- FULLSCREEN PAGE PREVIEW ---------- */
+.preview-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.preview-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.preview-overlay.hidden {
+    display: none;
+}
+
+
+/* ---------- MOBILE PAGE LIST FIX ---------- */
+@media (max-width: 768px) {
+
+    .app {
+        flex-direction: column;
+    }
+
+    /* Page list becomes bottom strip */
+    .page-list {
+        width: 100%;
+        height: 140px;
+        border-right: none;
+        border-top: 1px solid #e5e7eb;
+        display: flex;
+        gap: 12px;
+        padding: 10px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        background: #ffffff;
+    }
+
+    .page-list canvas {
+        width: auto;
+        height: 100%;
+        aspect-ratio: 3 / 4;
+        margin-bottom: 0;
+        flex-shrink: 0;
+        border-radius: 8px;
+    }
+
+    .reader {
+        padding-bottom: 10px;
+    }
+
+    #pdfInput {
+        display: none;
+    }
+
+    #uploadBtn {
+        display: block;
+        background: linear-gradient(180deg, #10b981, #059669);
+    }
+
+    #uploadBtn i {
+        font-size: 18px;
+    }
+
+    #uploadBtn:hover {
+        background: linear-gradient(180deg, #059669, #047857);
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-around;
+    }
+
+    .controls button span {
+        display: none;
+    }
+
+    .control-group i {
+        font-size: 20px;
+    }
+
+    .page-indicator {
+        background: rgba(0, 0, 0, 0.15);
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+
+}
