@@ -20,8 +20,6 @@ No backend. No paid APIs. No data leaves the device.
 - Mobile-safe rendering to prevent crashes and page reordering issues  
 - Single-PDF load protection to avoid race conditions  
 
----
-
 ### 🧠 OCR (Optical Character Recognition)
 - Powered by **Tesseract.js**  
 - Hindi and English OCR support  
@@ -29,23 +27,17 @@ No backend. No paid APIs. No data leaves the device.
 - Page-by-page OCR for responsive UI  
 - Fully offline processing  
 
----
-
 ### 🗣️ Text-to-Speech
 - Uses the browser’s native Speech Synthesis API  
 - Play, Pause, Resume, and Stop controls  
 - Adjustable speech rate and voice selection  
 - Page-synchronized reading  
 
----
-
 ### 🖼️ Preview & User Experience
 - Correctly ordered thumbnail previews (Android-safe)  
 - Full-page preview overlay without interrupting OCR or TTS  
 - PDF information panel (file name, page count, file size)  
 - Long-press image context menus disabled for a native-app feel  
-
----
 
 ### ⚡ Performance & Stability
 - Device-aware rendering limits based on available memory  
