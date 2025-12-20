@@ -15,7 +15,6 @@ function resetBeforeLoad() {
   state.pages = [];
   state.activePage = null;
   emit("pdf:reset");
-  console.log("PDF RESET FIRED"); // 🔴 DEBUG
 
 }
 

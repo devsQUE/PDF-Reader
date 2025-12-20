@@ -13,7 +13,6 @@ let busy = false;
 
 // When user selects a page
 on("page:selected", (index) => {
-    console.log("OCR RECEIVED page:selected:", index); // 🔴 DEBUG
 
     const page = getPage(index);
     if (!page || busy || !page.imageBlob) return;

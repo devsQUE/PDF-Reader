@@ -64,13 +64,14 @@ No backend. No paid APIs. No data leaves the device.
 
 The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
 
-
+<details open>
+<summary><strong>root/</strong> (click to expand)</summary>
 ```
 root/
 ├── index.html
 ├── style.css
-├── app.js                     # Application entry point
 ├── src/
+│   ├── app.js                 # Application entry point
 │   ├── core/
 │   │   ├── events.js          # Global event bus
 │   │   └── state.js           # Central state management
@@ -97,13 +98,21 @@ root/
 │   │   └── voiceControls.js
 │   └── utils/
 │       └── performanceLimits.js
+├── assets/
+│   ├── favicon.ico
+│   ├── logo.png
+│   └── icon/
+│       ├── icon-192.png
+│       └── icon-512.png
 ├── screenshots/
 │   ├── main-ui.png
 │   └── ocr-tts.png
-├── favicon.ico
+├── manifest.json
+├── service-worker.js
 ├── LICENSE
 └── README.md
 ```
+</details>
 
 ---
 

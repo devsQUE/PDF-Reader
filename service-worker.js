@@ -1,6 +1,6 @@
 const CACHE_NAME = "pdf-ocr-reader-v1";
 
-const STATIC_ASSETS = [
+const APP_SHELL = [
   "./",
   "./index.html",
   "./style.css",
@@ -42,17 +42,23 @@ const STATIC_ASSETS = [
   "./src/utils/performanceLimits.js"
 ];
 
-// Install
+// INSTALL — never fail install
 self.addEventListener("install", (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.addAll(STATIC_ASSETS);
+    caches.open(CACHE_NAME).then(async (cache) => {
+      for (const url of APP_SHELL) {
+        try {
+          await cache.add(url);
+        } catch (err) {
+          console.warn("SW cache skipped:", url);
+        }
+      }
     })
   );
   self.skipWaiting();
 });
 
-// Activate
+// ACTIVATE
 self.addEventListener("activate", (event) => {
   event.waitUntil(
     caches.keys().then((keys) =>
@@ -66,17 +72,21 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Fetch
+// FETCH — cache-first, then network, then cache
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
 
   event.respondWith(
     caches.match(event.request).then((cached) => {
-      return (
-        cached ||
-        fetch(event.request).then((res) => {
-          // Cache JS/CSS/HTML dynamically
-          if (res.ok && res.type === "basic") {
+      if (cached) return cached;
+
+      return fetch(event.request)
+        .then((res) => {
+          // Cache same-origin files only
+          if (
+            res.ok &&
+            event.request.url.startsWith(self.location.origin)
+          ) {
             const clone = res.clone();
             caches.open(CACHE_NAME).then((cache) => {
               cache.put(event.request, clone);
@@ -84,7 +94,7 @@ self.addEventListener("fetch", (event) => {
           }
           return res;
         })
-      );
+        .catch(() => cached);
     })
   );
 });
