@@ -64,154 +64,54 @@ No backend. No paid APIs. No data leaves the device.
 
 The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
 
-<details open>
-<summary>root/</summary>
 
+```
 root/
 ├── index.html
 ├── style.css
 ├── src/
+│   ├── app.js                 # Application entry point
+│   ├── core/
+│   │   ├── events.js          # Global event bus
+│   │   └── state.js           # Central state management
+│   ├── ocr/
+│   │   ├── ocrService.js      # OCR pipeline (Tesseract.js)
+│   │   └── ocrWorker.js       # Worker thread
+│   ├── pdf/
+│   │   ├── pageStore.js       # Page data storage
+│   │   └── pdfLoader.js       # PDF.js rendering logic
+│   ├── tts/
+│   │   ├── textChunker.js     # Text chunking logic
+│   │   └── ttsService.js      # Browser TTS service
+│   ├── ui/
+│   │   ├── controls.js
+│   │   ├── copyText.js
+│   │   ├── languageSwitch.js
+│   │   ├── loader.js
+│   │   ├── pageIndicator.js
+│   │   ├── pageList.js
+│   │   ├── pageRange.js
+│   │   ├── pdfInfo.js
+│   │   ├── preview.js
+│   │   ├── textPanel.js
+│   │   └── voiceControls.js
+│   └── utils/
+│       └── performanceLimits.js
 ├── assets/
+│   ├── favicon.ico
+│   ├── logo.png
+│   └── icon/
+│       ├── icon-192.png
+│       └── icon-512.png
 ├── screenshots/
+│   ├── main-ui.png
+│   └── ocr-tts.png
 ├── manifest.json
 ├── service-worker.js
 ├── LICENSE
 └── README.md
+```
 
-</details>
-
-
-SRC
----
-
-<details>
-<summary>src/</summary>
-
-src/
-├── app.js                 # Application entry point
-├── core/
-├── ocr/
-├── pdf/
-├── tts/
-├── ui/
-└── utils/
-
-</details>
-
-
-SRC / CORE
-----------
-
-<details>
-<summary>src/core/</summary>
-
-core/
-├── events.js              # Global event bus
-└── state.js               # Central state management
-
-</details>
-
-
-SRC / OCR
----------
-
-<details>
-<summary>src/ocr/</summary>
-
-ocr/
-├── ocrService.js          # OCR pipeline (Tesseract.js)
-└── ocrWorker.js           # Worker thread
-
-</details>
-
-
-SRC / PDF
----------
-
-<details>
-<summary>src/pdf/</summary>
-
-pdf/
-├── pageStore.js           # Page data storage
-└── pdfLoader.js           # PDF.js rendering logic
-
-</details>
-
-
-SRC / TTS
----------
-
-<details>
-<summary>src/tts/</summary>
-
-tts/
-├── textChunker.js         # Text chunking logic
-└── ttsService.js          # Browser TTS service
-
-</details>
-
-
-SRC / UI
---------
-
-<details>
-<summary>src/ui/</summary>
-
-ui/
-├── controls.js
-├── copyText.js
-├── languageSwitch.js
-├── loader.js
-├── pageIndicator.js
-├── pageList.js
-├── pageRange.js
-├── pdfInfo.js
-├── preview.js
-├── textPanel.js
-└── voiceControls.js
-
-</details>
-
-
-SRC / UTILS
------------
-
-<details>
-<summary>src/utils/</summary>
-
-utils/
-└── performanceLimits.js   # Device-aware performance limits
-
-</details>
-
-
-ASSETS
-------
-
-<details>
-<summary>assets/</summary>
-
-assets/
-├── favicon.ico
-├── logo.png
-└── icon/
-    ├── icon-192.png
-    └── icon-512.png
-
-</details>
-
-
-SCREENSHOTS
------------
-
-<details>
-<summary>screenshots/</summary>
-
-screenshots/
-├── main-ui.png
-└── ocr-tts.png
-
-</details>
 
 ---
 
