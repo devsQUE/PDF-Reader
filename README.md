@@ -65,129 +65,52 @@ No backend. No paid APIs. No data leaves the device.
 The application follows a **fully modular, event-driven architecture**, with a clean separation between UI, logic, and state.
 
 
-<details open>
-<summary><strong>root/</strong></summary>
-
-<ul>
-  <li>index.html</li>
-  <li>style.css</li>
-
-  <li>
-    <details>
-      <summary><strong>src/</strong></summary>
-      <ul>
-        <li>app.js</li>
-
-        <li>
-          <details>
-            <summary><strong>core/</strong></summary>
-            <ul>
-              <li>events.js</li>
-              <li>state.js</li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary><strong>ocr/</strong></summary>
-            <ul>
-              <li>ocrService.js</li>
-              <li>ocrWorker.js</li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary><strong>pdf/</strong></summary>
-            <ul>
-              <li>pageStore.js</li>
-              <li>pdfLoader.js</li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary><strong>tts/</strong></summary>
-            <ul>
-              <li>textChunker.js</li>
-              <li>ttsService.js</li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary><strong>ui/</strong></summary>
-            <ul>
-              <li>controls.js</li>
-              <li>copyText.js</li>
-              <li>languageSwitch.js</li>
-              <li>loader.js</li>
-              <li>pageIndicator.js</li>
-              <li>pageList.js</li>
-              <li>pageRange.js</li>
-              <li>pdfInfo.js</li>
-              <li>preview.js</li>
-              <li>textPanel.js</li>
-              <li>voiceControls.js</li>
-            </ul>
-          </details>
-        </li>
-
-        <li>
-          <details>
-            <summary><strong>utils/</strong></summary>
-            <ul>
-              <li>performanceLimits.js</li>
-            </ul>
-          </details>
-        </li>
-
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><strong>assets/</strong></summary>
-      <ul>
-        <li>favicon.ico</li>
-        <li>logo.png</li>
-
-        <li>
-          <details>
-            <summary><strong>icon/</strong></summary>
-            <ul>
-              <li>icon-192.png</li>
-              <li>icon-512.png</li>
-            </ul>
-          </details>
-        </li>
-      </ul>
-    </details>
-  </li>
-
-  <li>
-    <details>
-      <summary><strong>screenshots/</strong></summary>
-      <ul>
-        <li>main-ui.png</li>
-        <li>ocr-tts.png</li>
-      </ul>
-    </details>
-  </li>
-
-  <li>manifest.json</li>
-  <li>service-worker.js</li>
-  <li>LICENSE</li>
-  <li>README.md</li>
-</ul>
-
-</details>
-
+```
+root/
+├── index.html
+├── style.css
+├── src/
+│   ├── app.js                 # Application entry point
+│   ├── core/
+│   │   ├── events.js          # Global event bus
+│   │   └── state.js           # Central state management
+│   ├── ocr/
+│   │   ├── ocrService.js      # OCR pipeline (Tesseract.js)
+│   │   └── ocrWorker.js       # Worker thread
+│   ├── pdf/
+│   │   ├── pageStore.js       # Page data storage
+│   │   └── pdfLoader.js       # PDF.js rendering logic
+│   ├── tts/
+│   │   ├── textChunker.js     # Text chunking logic
+│   │   └── ttsService.js      # Browser TTS service
+│   ├── ui/
+│   │   ├── controls.js
+│   │   ├── copyText.js
+│   │   ├── languageSwitch.js
+│   │   ├── loader.js
+│   │   ├── pageIndicator.js
+│   │   ├── pageList.js
+│   │   ├── pageRange.js
+│   │   ├── pdfInfo.js
+│   │   ├── preview.js
+│   │   ├── textPanel.js
+│   │   └── voiceControls.js
+│   └── utils/
+│       └── performanceLimits.js
+├── assets/
+│   ├── favicon.ico
+│   ├── logo.png
+│   └── icon/
+│       ├── icon-192.png
+│       └── icon-512.png
+├── screenshots/
+│   ├── main-ui.png
+│   └── ocr-tts.png
+├── manifest.json
+├── service-worker.js
+├── LICENSE
+└── README.md
+```
 
 
 ---
